@@ -1,3 +1,4 @@
+from tabulate import tabulate
 import os
 import re
 import json
@@ -142,23 +143,7 @@ def postActivos():
         except ValueError:
             print("El dato ingresado no es numero")                
     #valida campo estado
-    print(f"""
-          --- Estados ---""")
-    for i, val in enumerate(gEstados.getEstados()):
-        print(f"  {i+1}. {val.get('Nombre').title()}")
-    print()
-    while True:
-        try:
-            op = input("Seleccione estado: ")
-            op = int(op)
-            if op > 0 and op <= len(gEstados.getEstados()):
-                newActivo["idEstado"] = str(op)
-                break
-            else:
-                print("No es una opcion valida")
-                input("Oprima una tecla para ingresar nueva opcion....")
-        except ValueError:
-            print("El dato ingresado no es numero")
+    newActivo["idEstado"] = "0"
     #valida campo historial activos
     hisActivos = []
     newActivo["historialActivos"] = hisActivos  
@@ -166,5 +151,147 @@ def postActivos():
     asigActivos = []
     newActivo["asignaciones"] = asigActivos 
 
-    print(newActivo)    
-    input()        
+    peticion = requests.post("http://154.38.171.54:5502/activos", data=json.dumps(newActivo))
+    res = peticion.json()
+    res["Mensaje"] = "Activo guardado"
+    return [res]     
+
+def updateActivos():
+    os.system("cls")
+    while True:
+        try:
+            nroItem = input("Ingrese el Nro Item a editar: ")
+            nroItem = int(nroItem)
+            break
+        except ValueError:
+            print("El dato ingresado no es numero")
+    newActivo = dict()
+    getItem = []
+    for val in gActivos.getAllData():
+        if val.get("NroItem") == nroItem:
+            newActivo = val
+            getItem.append({
+                "id":val.get("id"),
+                "NroItem":val.get("NroItem"),
+                "NroSerial":val.get("NroSerial"),
+                "Nombre":val.get("Nombre"),
+                "idMarca":val.get("idMarca"),
+                "idCategoria":val.get("idCategoria"),
+                "idTipo":val.get("idTipo"),
+                "ValorUnitario":val.get("ValorUnitario")
+            })
+            break
+    if not newActivo:
+        print("No se encontro el Nro item")
+        input("Oprima una tecla para regresar al menu....")  
+    else:
+        id = getItem[0]["id"]         
+        print()    
+        print(tabulate(getItem,headers="keys",tablefmt="github")) 
+        while True:
+            print(f"""
+                --- Editar datos ---
+                
+                1. Nro Serial
+                2. Nombre
+                3. Marca
+                4. Categoria
+                5. Valor unitario   
+                0. Atras  
+                """)
+
+            op = input("Seleccione un campo a editar: ")
+                
+            if op == "1":
+                while True:
+                    try:
+                        #valida campo NroSerial
+                        if(newActivo.get("NroSerial")):
+                            dato = input("Nro serial (de no tener colocar sin serial): ")
+                            #valida que el campo no este vacio y que tenga minimo 4 caracteres
+                            if(re.match(r'^(?!\s+$).{4,}$', dato) is not None):
+                                newActivo["NroSerial"] = dato
+                            break
+                        else:
+                            raise Exception(f"{dato} no cumple con el estandar establecido, no puede ser vacio y debe tener 4 caracteres como minimo")
+                    except Exception as error:
+                        print(error)
+                        input("Oprima una tecla para continuar....")
+                print("Dato actualizado correctamente") 
+                input("Oprima una tecla para continuar....")
+                os.system("cls")
+            elif op == "2":
+                    dato = input("Nombre activo: ") 
+                    newActivo["Nombre"] = dato 
+                    print("Dato actualizado correctamente") 
+                    input("Oprima una tecla para continuar....")
+                    os.system("cls")
+            elif op == "3":
+                    #valida campo marca
+                    print(f"""
+                        --- Marcas ---""")
+                    for i, val in enumerate(gMarcas.getMarcas()):
+                        print(f"  {i+1}. {val.get('Nombre').title()}")
+                    print()
+                    while True:
+                        try:
+                            op = input("Seleccione marca: ")
+                            op = int(op)
+                            if op > 0 and op <= len(gMarcas.getMarcas()):
+                                newActivo["idMarca"] = str(op)
+                                break
+                            else:
+                                print("No es una opcion valida")
+                                input("Oprima una tecla para ingresar nueva opcion....")
+                        except ValueError:
+                            print("El dato ingresado no es numero")
+                    print("Dato actualizado correctamente") 
+                    input("Oprima una tecla para continuar....")
+                    os.system("cls")
+            elif op == "4":
+                    #valida campo categoria
+                    print(f"""
+                        --- Categorias ---""")
+                    for i, val in enumerate(gCategorias.getCategorias()):
+                        print(f"  {i+1}. {val.get('Nombre').title()}")
+                    print()
+                    while True:
+                        try:
+                            op = input("Seleccione categoria: ")
+                            op = int(op)
+                            if op > 0 and op <= len(gCategorias.getCategorias()):
+                                newActivo["idCategoria"] = str(op)
+                                break
+                            else:
+                                print("No es una opcion valida")
+                                input("Oprima una tecla para ingresar nueva opcion....")
+                        except ValueError:
+                            print("El dato ingresado no es numero")
+                    print("Dato actualizado correctamente") 
+                    input("Oprima una tecla para continuar....")
+                    os.system("cls")
+            elif op == "5":
+                    #valida campo valor unitario
+                    while True:
+                        try:
+                            op = input("Valor unitario: ")
+                            op = int(op)
+                            newActivo["ValorUnitario"] = str(op)
+                            break
+                        except ValueError:
+                            print("El dato ingresado no es numero") 
+                    print("Dato actualizado correctamente") 
+                    input("Oprima una tecla para continuar....")
+                    os.system("cls")                                
+            elif op == "0":
+                break    
+            else:
+                print("No es una opcion valida")
+                input("Oprima una tecla para ingresar nueva opcion....")       
+
+        peticion = requests.put(f"http://154.38.171.54:5502/activos/{id}", data=json.dumps(newActivo))
+        print(peticion.status_code)
+        res = peticion.json()
+        res["Mensaje"] = "Activo actualizado"
+        return [res]
+

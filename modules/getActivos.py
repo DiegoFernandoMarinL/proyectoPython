@@ -2,7 +2,7 @@ import json
 import requests
 
 def getAllData():
-    peticion = requests.get("http://154.38.171.54:5501/activos")
+    peticion = requests.get("http://154.38.171.54:5502/activos")
     data = peticion.json()
     return data
 

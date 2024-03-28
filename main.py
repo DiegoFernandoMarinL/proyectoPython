@@ -20,9 +20,11 @@ def menuActivos():
         op = input("Seleccione una opcion: ")
         
         if op == "1":
-            CRUDactivos.postActivos()
-        elif op == "2":    
-            print("No es una opcion valida")
+            print(CRUDactivos.postActivos())
+            input("Oprima una tecla para continuar....")
+        elif op == "2":
+            CRUDactivos.updateActivos()
+            input("Oprima una tecla para continuar....")    
         elif op == "0":
             flag = 0    
         else:
@@ -34,6 +36,7 @@ if (__name__=="__main__"):
     while flag == 1:
         os.system("cls")
         print(f"""
+        
             +-+-+-+-+-+-+-+ +-+-+-+ +-+-+ +-+-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+-+
             |S|I|S|T|E|M|A| |G|&|C| |D|E| |I|N|V|E|N|T|A|R|I|O| |C|A|M|P|U|S|L|A|N|D|S|
             +-+-+-+-+-+-+-+ +-+-+-+ +-+-+ +-+-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+-+
