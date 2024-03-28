@@ -1,7 +1,41 @@
 import os
 import modules.CRUDactivos as CRUDactivos
+import modules.CRUDpersonal as CRUDpersonal
 
 import modules.getActivos as gActivos
+
+def menuPersonal():
+    flag = 1
+    while flag == 1:
+        os.system("cls")
+        print(f"""
+            --- Bienvenido al menu de Personal ---
+            
+            1. Agregar
+            2. Editar
+            3. Eliminar
+            4. Buscar
+            0. Regresar al menu principal   
+            """)
+        
+        op = input("Seleccione una opcion: ")
+        
+        if op == "1":
+            print(CRUDpersonal.postPersonal())
+            input("Oprima enter para continuar....")
+        elif op == "2":
+            CRUDactivos.updateActivos()
+            input("Oprima enter para continuar....")    
+        elif op == "3":
+            input("Oprima enter para continuar....") 
+        elif op == "4":
+            CRUDactivos.findActivos()
+            input("Oprima enter para continuar....")     
+        elif op == "0":
+            flag = 0    
+        else:
+            print("No es una opcion valida")
+            input("Oprima enter para ingresar nueva opcion....")
 
 def menuActivos():
     flag = 1
@@ -21,15 +55,20 @@ def menuActivos():
         
         if op == "1":
             print(CRUDactivos.postActivos())
-            input("Oprima una tecla para continuar....")
+            input("Oprima enter para continuar....")
         elif op == "2":
             CRUDactivos.updateActivos()
-            input("Oprima una tecla para continuar....")    
+            input("Oprima enter para continuar....")    
+        elif op == "3":
+            input("Oprima enter para continuar....") 
+        elif op == "4":
+            CRUDactivos.findActivos()
+            input("Oprima enter para continuar....")     
         elif op == "0":
             flag = 0    
         else:
             print("No es una opcion valida")
-            input("Oprima una tecla para ingresar nueva opcion....")
+            input("Oprima enter para ingresar nueva opcion....")
 
 if (__name__=="__main__"):
     flag = 1
@@ -57,7 +96,7 @@ if (__name__=="__main__"):
         if op == "1":
             menuActivos()
         elif op == "2":    
-            print("falta anexar")
+            menuPersonal()
         elif op == "3":    
             print("falta anexar")
         elif op == "4":  
@@ -66,10 +105,10 @@ if (__name__=="__main__"):
             print("falta anexar")
         elif op == "6":   
             print(type(gActivos.getAllData()))
-            input("Oprima una tecla para ingresar nueva opcion....")
+            input("Oprima enter para ingresar nueva opcion....")
         elif op == "0":
             print("Gracias por utilizar el programa")
             flag = 0    
         else:
             print("No es una opcion valida")
-            input("Oprima una tecla para ingresar nueva opcion....")
+            input("Oprima enter para ingresar nueva opcion....")

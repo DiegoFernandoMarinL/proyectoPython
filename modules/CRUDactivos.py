@@ -76,7 +76,7 @@ def postActivos():
 
         else:
             print("No es una opcion valida")
-            input("Oprima una tecla para ingresar nueva opcion....")
+            input("Oprima enter para ingresar nueva opcion....")
 
     dato = letras+gActivos.getCodCampus(letras)
     if idTipoActivo == "6" or idTipoActivo == "7" or idTipoActivo == "8":
@@ -110,7 +110,7 @@ def postActivos():
                 break
             else:
                 print("No es una opcion valida")
-                input("Oprima una tecla para ingresar nueva opcion....")
+                input("Oprima enter para ingresar nueva opcion....")
         except ValueError:
             print("El dato ingresado no es numero")
     #valida campo categoria
@@ -128,7 +128,7 @@ def postActivos():
                 break
             else:
                 print("No es una opcion valida")
-                input("Oprima una tecla para ingresar nueva opcion....")
+                input("Oprima enter para ingresar nueva opcion....")
         except ValueError:
             print("El dato ingresado no es numero")                
     #valida campo tipo
@@ -183,7 +183,7 @@ def updateActivos():
             break
     if not newActivo:
         print("No se encontro el Nro item")
-        input("Oprima una tecla para regresar al menu....")  
+        input("Oprima enter para regresar al menu....")  
     else:
         id = getItem[0]["id"]         
         print()    
@@ -216,15 +216,15 @@ def updateActivos():
                             raise Exception(f"{dato} no cumple con el estandar establecido, no puede ser vacio y debe tener 4 caracteres como minimo")
                     except Exception as error:
                         print(error)
-                        input("Oprima una tecla para continuar....")
+                        input("Oprima enter para continuar....")
                 print("Dato actualizado correctamente") 
-                input("Oprima una tecla para continuar....")
+                input("Oprima enter para continuar....")
                 os.system("cls")
             elif op == "2":
                     dato = input("Nombre activo: ") 
                     newActivo["Nombre"] = dato 
                     print("Dato actualizado correctamente") 
-                    input("Oprima una tecla para continuar....")
+                    input("Oprima enter para continuar....")
                     os.system("cls")
             elif op == "3":
                     #valida campo marca
@@ -242,11 +242,11 @@ def updateActivos():
                                 break
                             else:
                                 print("No es una opcion valida")
-                                input("Oprima una tecla para ingresar nueva opcion....")
+                                input("Oprima enter para ingresar nueva opcion....")
                         except ValueError:
                             print("El dato ingresado no es numero")
                     print("Dato actualizado correctamente") 
-                    input("Oprima una tecla para continuar....")
+                    input("Oprima enter para continuar....")
                     os.system("cls")
             elif op == "4":
                     #valida campo categoria
@@ -264,11 +264,11 @@ def updateActivos():
                                 break
                             else:
                                 print("No es una opcion valida")
-                                input("Oprima una tecla para ingresar nueva opcion....")
+                                input("Oprima enter para ingresar nueva opcion....")
                         except ValueError:
                             print("El dato ingresado no es numero")
                     print("Dato actualizado correctamente") 
-                    input("Oprima una tecla para continuar....")
+                    input("Oprima enter para continuar....")
                     os.system("cls")
             elif op == "5":
                     #valida campo valor unitario
@@ -281,17 +281,36 @@ def updateActivos():
                         except ValueError:
                             print("El dato ingresado no es numero") 
                     print("Dato actualizado correctamente") 
-                    input("Oprima una tecla para continuar....")
+                    input("Oprima enter para continuar....")
                     os.system("cls")                                
             elif op == "0":
                 break    
             else:
                 print("No es una opcion valida")
-                input("Oprima una tecla para ingresar nueva opcion....")       
+                input("Oprima enter para ingresar nueva opcion....")       
 
         peticion = requests.put(f"http://154.38.171.54:5502/activos/{id}", data=json.dumps(newActivo))
         print(peticion.status_code)
         res = peticion.json()
         res["Mensaje"] = "Activo actualizado"
         return [res]
+    
+def findActivos():
+    os.system("cls")
+    while True:
+        try:
+            nroItem = input("Ingrese el Nro Item: ")
+            nroItem = int(nroItem)
+            break
+        except ValueError:
+            print("El dato ingresado no es numero")
+    getItem = []
+    for val in gActivos.getAllData():
+        if val.get("NroItem") == nroItem:
+            getItem.append(val)
+            break
+    if not getItem:
+        print("No se encontro el Nro item")
+    else:
+        print(tabulate(getItem,headers="keys",tablefmt="github"))                    
 
