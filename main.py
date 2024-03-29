@@ -2,6 +2,33 @@ import os
 import modules.CRUDactivos as CRUDactivos
 import modules.CRUDpersonal as CRUDpersonal
 import modules.CRUDzonas as CRUDzonas
+import modules.CRUDasignacion as CRUDasignacion
+
+def menuAsignacionActivos():
+    flag = 1
+    while flag == 1:
+        os.system("cls")
+        print(f"""
+            --- Bienvenido al menu de Asignacion de activos ---
+            
+            1. Crear asignacion
+            2. Buscar aignacion
+            0. Regresar al menu principal   
+            """)
+        
+        op = input("Seleccione una opcion: ")
+        
+        if op == "1":
+            print(CRUDasignacion.postAsignacion())
+            input("Oprima enter para continuar....")
+        elif op == "2":
+            print(CRUDzonas.updateZonas())
+            input("Oprima enter para continuar....")    
+        elif op == "0":
+            flag = 0    
+        else:
+            print("No es una opcion valida")
+            input("Oprima enter para ingresar nueva opcion....")
 
 def menuZonas():
     flag = 1
@@ -132,7 +159,7 @@ if (__name__=="__main__"):
         elif op == "3":    
             menuZonas()
         elif op == "4":  
-            print("falta anexar") 
+            menuAsignacionActivos() 
         elif op == "5":    
             print("falta anexar")
         elif op == "6":   
