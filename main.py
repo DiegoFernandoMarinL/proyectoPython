@@ -1,8 +1,40 @@
 import os
 import modules.CRUDactivos as CRUDactivos
 import modules.CRUDpersonal as CRUDpersonal
+import modules.CRUDzonas as CRUDzonas
 
-import modules.getActivos as gActivos
+def menuZonas():
+    flag = 1
+    while flag == 1:
+        os.system("cls")
+        print(f"""
+            --- Bienvenido al menu de Zonas ---
+            
+            1. Agregar
+            2. Editar
+            3. Eliminar
+            4. Buscar
+            0. Regresar al menu principal   
+            """)
+        
+        op = input("Seleccione una opcion: ")
+        
+        if op == "1":
+            print(CRUDzonas.postZonas())
+            input("Oprima enter para continuar....")
+        elif op == "2":
+            print(CRUDzonas.updateZonas())
+            input("Oprima enter para continuar....")    
+        elif op == "3":
+            input("Oprima enter para continuar....") 
+        elif op == "4":
+            CRUDzonas.findZonas()
+            input("Oprima enter para continuar....")     
+        elif op == "0":
+            flag = 0    
+        else:
+            print("No es una opcion valida")
+            input("Oprima enter para ingresar nueva opcion....")
 
 def menuPersonal():
     flag = 1
@@ -29,7 +61,7 @@ def menuPersonal():
         elif op == "3":
             input("Oprima enter para continuar....") 
         elif op == "4":
-            CRUDactivos.findActivos()
+            CRUDpersonal.findPersonal()
             input("Oprima enter para continuar....")     
         elif op == "0":
             flag = 0    
@@ -98,17 +130,16 @@ if (__name__=="__main__"):
         elif op == "2":    
             menuPersonal()
         elif op == "3":    
-            print("falta anexar")
+            menuZonas()
         elif op == "4":  
             print("falta anexar") 
         elif op == "5":    
             print("falta anexar")
         elif op == "6":   
-            print(type(gActivos.getAllData()))
-            input("Oprima enter para ingresar nueva opcion....")
+            print("falta anexar")
         elif op == "0":
             print("Gracias por utilizar el programa")
-            flag = 0    
+            flag = 0   
         else:
             print("No es una opcion valida")
             input("Oprima enter para ingresar nueva opcion....")

@@ -88,7 +88,7 @@ def postActivos():
     newActivo["NroFormulario"] = gActivos.getNroFormulario()
     #valida campo nombre  
     dato = input("Nombre activo: ")
-    newActivo["Nombre"] = dato
+    newActivo["Nombre"] = dato.title()
     #valida campo proveedor
     print("Proveedor:  Compumax Computer ")
     newActivo["Proveedor"] = "Compumax Computer "

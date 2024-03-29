@@ -30,7 +30,7 @@ def postPersonal():
             print(error)
     #valida nombre
     dato = input("Nombre: ")
-    newPersona["Nombre"] = dato        
+    newPersona["Nombre"] = dato.title()        
     #valida email
     while True:
         try:    
@@ -286,4 +286,26 @@ def updatePersonal():
             return("Personal actualizado correctamente")
         else:
             return peticion.status_code
+        
+def findPersonal():
+    os.system("cls")
+    while True:
+        try:
+            nroCC = input("Ingrese el Nro cedula/nit: ")
+            nroCC = int(nroCC)
+            break
+        except ValueError:
+            print("El dato ingresado no es numero")
+    getCC = []
+    for val in gPersonal.getAllData():
+        if val.get("nroId (CC, Nit)") == str(nroCC):
+            getCC.append(val)
+            break
+    if not getCC:
+        print("No se encontro el Nro cedula/nit")
+    else:
+        print()
+        print(tabulate(getCC,headers="keys",tablefmt="github")) 
+        print()  
+
 

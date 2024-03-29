@@ -11,8 +11,8 @@ def getEmail(email):
     for val in getAllData():
         if val.get("Email") == email:
             mail.append({
-                "nombre":val.get("Nombre"),
-                "email":val.get("Email")
+                "Nombre":val.get("Nombre"),
+                "Email":val.get("Email")
             })
             return(mail)
 
