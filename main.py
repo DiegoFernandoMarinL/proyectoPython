@@ -24,7 +24,7 @@ def menuPersonal():
             print(CRUDpersonal.postPersonal())
             input("Oprima enter para continuar....")
         elif op == "2":
-            CRUDactivos.updateActivos()
+            print(CRUDpersonal.updatePersonal())
             input("Oprima enter para continuar....")    
         elif op == "3":
             input("Oprima enter para continuar....") 
@@ -57,7 +57,7 @@ def menuActivos():
             print(CRUDactivos.postActivos())
             input("Oprima enter para continuar....")
         elif op == "2":
-            CRUDactivos.updateActivos()
+            print(CRUDactivos.updateActivos())
             input("Oprima enter para continuar....")    
         elif op == "3":
             input("Oprima enter para continuar....") 

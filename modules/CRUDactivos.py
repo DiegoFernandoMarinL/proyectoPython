@@ -152,9 +152,10 @@ def postActivos():
     newActivo["asignaciones"] = asigActivos 
 
     peticion = requests.post("http://154.38.171.54:5502/activos", data=json.dumps(newActivo))
-    res = peticion.json()
-    res["Mensaje"] = "Activo guardado"
-    return [res]     
+    if(peticion.status_code == 201 or peticion.status_code == 200):
+        return("Activo creado correctamente")
+    else:
+        return peticion.status_code    
 
 def updateActivos():
     os.system("cls")
@@ -182,8 +183,7 @@ def updateActivos():
             })
             break
     if not newActivo:
-        print("No se encontro el Nro item")
-        input("Oprima enter para regresar al menu....")  
+        return "No se encontro el Nro item" 
     else:
         id = getItem[0]["id"]         
         print()    
@@ -290,10 +290,10 @@ def updateActivos():
                 input("Oprima enter para ingresar nueva opcion....")       
 
         peticion = requests.put(f"http://154.38.171.54:5502/activos/{id}", data=json.dumps(newActivo))
-        print(peticion.status_code)
-        res = peticion.json()
-        res["Mensaje"] = "Activo actualizado"
-        return [res]
+        if(peticion.status_code == 201 or peticion.status_code == 200):
+            return("Personal actualizado correctamente")
+        else:
+            return peticion.status_code
     
 def findActivos():
     os.system("cls")

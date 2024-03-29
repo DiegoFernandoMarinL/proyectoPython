@@ -15,3 +15,15 @@ def getEmail(email):
                 "email":val.get("Email")
             })
             return(mail)
+
+def getNroCedulaNit(cedula):
+    CC = []
+    for val in getAllData():
+        if val.get("nroId (CC, Nit)") == cedula:
+            CC.append({
+                "Nro cedula/nit":val.get("nroId (CC, Nit)"),
+                "Nombre":val.get("Nombre"),
+                "Email":val.get("Email"),
+                "Telefonos":val.get("Telefonos")
+            })
+            return(CC)        
