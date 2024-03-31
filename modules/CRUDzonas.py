@@ -33,7 +33,7 @@ def postZonas():
         except ValueError:
             print("El dato ingresado no es numero")
 
-    peticion = requests.post("http://154.38.171.54:5502/zonas", data=json.dumps(newZona))
+    peticion = requests.post("http://192.168.1.39:5501/zonas", data=json.dumps(newZona))
     if peticion.status_code == 201 or peticion.status_code == 200:
         return "Zona creada correctamente"
     else:
@@ -67,7 +67,7 @@ def updateZonas():
     
         id = newZona["id"]
 
-        peticion = requests.put(f"http://154.38.171.54:5502/zonas/{id}", data=json.dumps(newZona))
+        peticion = requests.put(f"http://192.168.1.39:5501/zonas/{id}", data=json.dumps(newZona))
         if peticion.status_code == 200 or peticion.status_code == 201:
             return "Zona actualizada correctamente"
         else:

@@ -151,7 +151,7 @@ def postActivos():
     asigActivos = []
     newActivo["asignaciones"] = asigActivos 
 
-    peticion = requests.post("http://154.38.171.54:5502/activos", data=json.dumps(newActivo))
+    peticion = requests.post("http://192.168.1.39:5501/activos", data=json.dumps(newActivo))
     if(peticion.status_code == 201 or peticion.status_code == 200):
         return("Activo creado correctamente")
     else:
@@ -181,7 +181,7 @@ def updateActivos():
                 "idTipo":val.get("idTipo"),
                 "ValorUnitario":val.get("ValorUnitario")
             })
-            break
+            break 
     if not newActivo:
         return "No se encontro el Nro item" 
     else:
@@ -288,8 +288,8 @@ def updateActivos():
             else:
                 print("No es una opcion valida")
                 input("Oprima enter para ingresar nueva opcion....")       
-
-        peticion = requests.put(f"http://154.38.171.54:5502/activos/{id}", data=json.dumps(newActivo))
+        
+        peticion = requests.put(f"http://192.168.1.39:5501/activos/{id}", data=json.dumps(newActivo))
         if(peticion.status_code == 201 or peticion.status_code == 200):
             return("Personal actualizado correctamente")
         else:

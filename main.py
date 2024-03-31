@@ -4,6 +4,10 @@ import modules.CRUDpersonal as CRUDpersonal
 import modules.CRUDzonas as CRUDzonas
 import modules.CRUDasignacion as CRUDasignacion
 
+#Servidor
+#json-server storage/activos.json -b 5502
+#-------------------------
+
 def menuAsignacionActivos():
     flag = 1
     while flag == 1:
