@@ -9332,6 +9332,38 @@
                     }
                 }
             ]
+        },
+        {
+            "nroId (CC, Nit)": "1007436730",
+            "Nombre": "Diego ",
+            "Email": "diego.14.marin@gmail.com",
+            "Telefonos": [
+                {
+                    "movil": {
+                        "id": "1",
+                        "num": "3112823929"
+                    }
+                },
+                {
+                    "casa": {
+                        "id": "2",
+                        "num": ""
+                    }
+                },
+                {
+                    "personal": {
+                        "id": "3",
+                        "num": "3112823929"
+                    }
+                },
+                {
+                    "oficina": {
+                        "id": "4",
+                        "num": ""
+                    }
+                }
+            ],
+            "id": "ca5316cf-96c9-4986-81c7-ca9a5f983692"
         }
     ],
     "zonas": [
@@ -9382,7 +9414,7 @@
         },
         {
             "nombreZona": "Polo",
-            "totalCapacidad": 24,
+            "totalCapacidad": 23,
             "id": "4dfe53b7-0eb6-488b-89ac-ee9ec3da7dc2"
         }
     ],

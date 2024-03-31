@@ -297,15 +297,30 @@ def findPersonal():
         except ValueError:
             print("El dato ingresado no es numero")
     getCC = []
+    getTel = []
     for val in gPersonal.getAllData():
         if val.get("nroId (CC, Nit)") == str(nroCC):
-            getCC.append(val)
+            getCC.append({
+                "Nro cedula Nit":val.get("nroId (CC, Nit)"),
+                "Nombre":val.get("Nombre"),
+                "Email":val.get("Email")
+            })
+            getTel.append({
+                "Movil":val["Telefonos"][0]["movil"]["num"],
+                "Casa":val["Telefonos"][1]["casa"]["num"],
+                "Personal":val["Telefonos"][2]["personal"]["num"],
+                "Oficina":val["Telefonos"][3]["oficina"]["num"]
+            })
             break
     if not getCC:
         print("No se encontro el Nro cedula/nit")
     else:
-        print()
-        print(tabulate(getCC,headers="keys",tablefmt="github")) 
-        print()  
+        print(
+f"""
+{tabulate(getCC,headers='keys',tablefmt='github')}
+
+----Telefonos----
+{tabulate(getTel,headers='keys',tablefmt='github')}
+        """)
 
 

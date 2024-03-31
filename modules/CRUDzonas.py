@@ -41,13 +41,13 @@ def postZonas():
 
 def updateZonas():
     os.system("cls")
-    print()
-    print(tabulate(gZonas.getAllData(), headers="keys", tablefmt="github"))
-    print()
     #valida campo nombre
     newZona = dict()
     dato = input("Nombre: ")
     data = gZonas.getNombreZona(dato)
+    print()
+    print(tabulate(data, headers="keys", tablefmt="github"))
+    print()
     for val in gZonas.getAllData():
         if val.get("nombreZona") == dato.title():
             newZona = val
@@ -77,7 +77,9 @@ def findZonas():
     os.system("cls")
     dato = input("Nombre: ")
     data = gZonas.getNombreZona(dato)
-    if data:
+    print(data)
+    input()
+    if data != None:
         print()
         print(tabulate(data, headers="keys", tablefmt="github"))
         print()
