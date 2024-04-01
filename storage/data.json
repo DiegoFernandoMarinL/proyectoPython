@@ -9120,10 +9120,17 @@
             "idCategoria": "2",
             "idTipo": "7",
             "ValorUnitario": "120000",
-            "idEstado": "0",
-            "id": "505",
+            "idEstado": "1",
+            "id": 505,
             "historialActivos": [],
-            "asignaciones": []
+            "asignaciones": [
+                {
+                    "NroAsignacion": 2,
+                    "FechaAsignacion": "2024-04-01 13:26",
+                    "TipoAsignacion": "Zona",
+                    "AsignadoA": "1"
+                }
+            ]
         },
         {
             "NroItem": 557,

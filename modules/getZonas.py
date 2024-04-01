@@ -2,7 +2,7 @@ import json
 import requests
 
 def getAllData():
-    peticion = requests.get("http://192.168.1.39:5501/zonas")
+    peticion = requests.get("http://localhost:5501/zonas")
     data = peticion.json()
     return data
 
@@ -15,3 +15,12 @@ def getNombreZona(nombre):
                 "Capacidad":val.get("totalCapacidad")    
             })
             return name
+        
+def getAllNombreZona():
+    datos = []
+    for val in getAllData():
+        datos.append({
+            "Zona":val.get("nombreZona"),
+            "Capacidad":val.get("totalCapacidad")
+        })
+    return datos         

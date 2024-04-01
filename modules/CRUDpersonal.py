@@ -103,7 +103,7 @@ def postPersonal():
 
     newPersona["Telefonos"] = telefonos
 
-    peticion = requests.post("http://192.168.1.39:5501/personas", data=json.dumps(newPersona))
+    peticion = requests.post("http://localhost:5501/personas", data=json.dumps(newPersona))
     if(peticion.status_code == 201 or peticion.status_code == 200):
         return("Personal creado correctamente")
     else:
@@ -281,7 +281,7 @@ def updatePersonal():
                 print("No es una opcion valida")
                 input("Oprima enter para ingresar nueva opcion....")       
 
-        peticion = requests.put(f"http://192.168.1.39:5501/personas/{id}", data=json.dumps(newPersona))
+        peticion = requests.put(f"http://localhost:5501/personas/{id}", data=json.dumps(newPersona))
         if(peticion.status_code == 201 or peticion.status_code == 200):
             return("Personal actualizado correctamente")
         else:

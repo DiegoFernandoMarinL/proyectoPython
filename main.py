@@ -10,7 +10,7 @@ import modules.CRUDasignacion as CRUDasignacion
 
 def menuAsignacionActivos():
     flag = 1
-    while flag == 1:
+    while flag == 1: 
         os.system("cls")
         print(f"""
             --- Bienvenido al menu de Asignacion de activos ---

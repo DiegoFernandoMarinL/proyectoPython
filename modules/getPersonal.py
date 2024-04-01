@@ -2,7 +2,7 @@ import json
 import requests
 
 def getAllData():
-    peticion = requests.get("http://192.168.1.39:5501/personas")
+    peticion = requests.get("http://localhost:5501/personas")
     data = peticion.json()
     return data
 
@@ -26,4 +26,13 @@ def getNroCedulaNit(cedula):
                 "Email":val.get("Email"),
                 "Telefonos":val.get("Telefonos")
             })
-            return(CC)        
+            return(CC)    
+
+def getAllCedulaNombre():
+    datos = []
+    for val in getAllData():
+        datos.append({
+            "Cedula/Nit":val.get("nroId (CC, Nit)"),
+            "Nombre":val.get("Nombre")
+        })
+    return datos            

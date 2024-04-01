@@ -2,7 +2,7 @@ import json
 import requests
 
 def getAllData():
-    peticion = requests.get("http://192.168.1.39:5501/activos")
+    peticion = requests.get("http://localhost:5501/activos")
     data = peticion.json()
     return data
 
@@ -29,6 +29,8 @@ def getNroFormulario():
     data = getAllData()
     NroFormulario = data[-1]["NroFormulario"] + 1
     return(NroFormulario)
+
+    
         
 
 
