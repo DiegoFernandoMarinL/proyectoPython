@@ -9411,11 +9411,6 @@
             "id": "9",
             "nombreZona": "Zona Hunters",
             "totalCapacidad": 60
-        },
-        {
-            "nombreZona": "Polo",
-            "totalCapacidad": 23,
-            "id": "4dfe53b7-0eb6-488b-89ac-ee9ec3da7dc2"
         }
     ],
     "estados": [

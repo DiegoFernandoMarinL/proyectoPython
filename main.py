@@ -16,7 +16,7 @@ def menuAsignacionActivos():
             --- Bienvenido al menu de Asignacion de activos ---
             
             1. Crear asignacion
-            2. Buscar aignacion
+            2. Buscar asignacion
             0. Regresar al menu principal   
             """)
         
