@@ -19,7 +19,7 @@ def postAsignacion():
             print("El dato ingresado no es numero")
 
     newAsignacion = dict()        
-    asignaciones = []
+    asignaciones = {}
     for val in gActivos.getAllData():
         if val.get("NroItem") == nroItem:
             newAsignacion = val
@@ -81,15 +81,14 @@ def postAsignacion():
             except ValueError:
                 print("El dato ingresado no es numero")
 
-        asignaciones.append({
-            "NroAsignacion":nroAsignacion,
-            "FechaAsignacion":fechaHora,
-            "TipoAsignacion":tipoAsignacion,
-            "AsignadoA":asignadoA
+        asignaciones["NroAsignacion"] = nroAsignacion
+        asignaciones["FechaAsignacion"] = fechaHora
+        asignaciones["TipoAsignacion"] = tipoAsignacion
+        asignaciones["AsignadoA"] = asignadoA
 
-        })
-
-        newAsignacion["asignaciones"] = asignaciones
+        dataAsig = list(newAsignacion["asignaciones"])
+        dataAsig.append(asignaciones)
+        newAsignacion["asignaciones"] = dataAsig
         #estado cambia a asignado
         newAsignacion["idEstado"] = "1"
 

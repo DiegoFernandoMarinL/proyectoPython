@@ -9129,6 +9129,12 @@
                     "FechaAsignacion": "2024-04-01 13:26",
                     "TipoAsignacion": "Zona",
                     "AsignadoA": "1"
+                },
+                {
+                    "NroAsignacion": 3,
+                    "FechaAsignacion": "2024-04-01 15:57",
+                    "TipoAsignacion": "Zona",
+                    "AsignadoA": "1"
                 }
             ]
         },
