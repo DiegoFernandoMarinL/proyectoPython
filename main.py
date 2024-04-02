@@ -3,10 +3,43 @@ import modules.CRUDactivos as CRUDactivos
 import modules.CRUDpersonal as CRUDpersonal
 import modules.CRUDzonas as CRUDzonas
 import modules.CRUDasignacion as CRUDasignacion
+import modules.updateMovActivos as UmovActivos
 
 #Servidor
 #json-server storage/activos.json -b 5502
 #-------------------------
+def menuMovActivos():
+    flag = 1
+    while flag == 1:
+        os.system("cls")
+        print(f"""
+            --- Bienvenido al menu de Movimientos de activos ---
+            
+            1. Retorno activo
+            2. Dar de baja
+            3. Cambiar de asignacion
+            4. Enviar a garantia
+            0. Regresar al menu principal   
+            """)
+        
+        op = input("Seleccione una opcion: ")
+        
+        if op == "1":
+            print(UmovActivos.retornoActivo())
+            input("Oprima enter para continuar....")
+        elif op == "2":
+            print(UmovActivos.bajaActivo())
+            input("Oprima enter para continuar....")    
+        elif op == "3":
+            input("Oprima enter para continuar....") 
+        elif op == "4":
+            CRUDzonas.findZonas()
+            input("Oprima enter para continuar....")     
+        elif op == "0":
+            flag = 0    
+        else:
+            print("No es una opcion valida")
+            input("Oprima enter para ingresar nueva opcion....")
 
 def menuAsignacionActivos():
     flag = 1
@@ -26,7 +59,7 @@ def menuAsignacionActivos():
             print(CRUDasignacion.postAsignacion())
             input("Oprima enter para continuar....")
         elif op == "2":
-            print(CRUDasignacion.findAsignacion())
+            CRUDasignacion.findAsignacion()
             input("Oprima enter para continuar....")    
         elif op == "0":
             flag = 0    
@@ -167,7 +200,7 @@ if (__name__=="__main__"):
         elif op == "5":    
             print("falta anexar")
         elif op == "6":   
-            print("falta anexar")
+            menuMovActivos()
         elif op == "0":
             print("Gracias por utilizar el programa")
             flag = 0   

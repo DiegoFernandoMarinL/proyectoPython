@@ -7,6 +7,7 @@ import modules.getActivos as gActivos
 import modules.getAsignacion as gAsignacion
 import modules.getPersonal as gPersona
 import modules.getZonas as gZonas
+import modules.getHistorial as gHistorial
 
 def postAsignacion():
     os.system("cls")
@@ -22,7 +23,10 @@ def postAsignacion():
     asignaciones = {}
     for val in gActivos.getAllData():
         if val.get("NroItem") == nroItem:
+            if val.get("idEstado") == "2":
+                return "No se puede asignar el activo porque esta dado de baja"
             newAsignacion = val
+            historial = val.get("historialActivos")
        
     if newAsignacion:
         id = newAsignacion["id"]
@@ -91,6 +95,11 @@ def postAsignacion():
         newAsignacion["asignaciones"] = dataAsig
         #estado cambia a asignado
         newAsignacion["idEstado"] = "1"
+        #Asigna historial
+        tipoMov = "1"
+        idResponsableMov = "Campuslands"
+        historial = gHistorial.getHistorial(nroItem,historial,tipoMov,idResponsableMov)
+        newAsignacion["historialActivos"] = historial
 
         peticion = requests.put(f"http://localhost:5501/activos/{id}", data=json.dumps(newAsignacion))
         if(peticion.status_code == 201 or peticion.status_code == 200):
@@ -114,31 +123,30 @@ def findAsignacion():
     newAsignacion = []
     for val in gActivos.getAllData():
         if val.get("NroItem") == nroItem:
-            tipoAsig = val.get("asignaciones")[-1]["TipoAsignacion"]
-            idAsig = val.get("asignaciones")[-1]["AsignadoA"]
-            if tipoAsig == "Zona":
-                for dato in gZonas.getAllData():
-                    if dato.get("id") == idAsig:
-                        asignadoA = dato.get("nombreZona")
-            else:
-                for dato in gPersona.getAllData():
-                    if dato.get("id") == idAsig:
-                        asignadoA = dato.get("Nombre")
+            if val.get("idEstado") == "0":
+                print("Activo no asignado")
+            else:    
+                tipoAsig = val.get("asignaciones")[-1]["TipoAsignacion"]
+                idAsig = val.get("asignaciones")[-1]["AsignadoA"]
+                if tipoAsig == "Zona":
+                    for dato in gZonas.getAllData():
+                        if dato.get("id") == idAsig:
+                            asignadoA = dato.get("nombreZona")
+                else:
+                    for dato in gPersona.getAllData():
+                        if dato.get("id") == idAsig:
+                            asignadoA = dato.get("Nombre")
 
-            newAsignacion.append({
-                "Nro Asignacion":val.get("asignaciones")[-1]["NroAsignacion"],
-                "Fecha Asignacion":val.get("asignaciones")[-1]["FechaAsignacion"],
-                "Tipo Asignacion":val.get("asignaciones")[-1]["TipoAsignacion"],
-                "Asignado":asignadoA
-            })
-            
-
-
-    print()
-    print(tabulate(newAsignacion, headers="keys", tablefmt="github"))
-    input()     
-
-
+                newAsignacion.append({
+                    "Nro Asignacion":val.get("asignaciones")[-1]["NroAsignacion"],
+                    "Fecha Asignacion":val.get("asignaciones")[-1]["FechaAsignacion"],
+                    "Tipo Asignacion":val.get("asignaciones")[-1]["TipoAsignacion"],
+                    "Asignado":asignadoA
+                })
+                
+                print()
+                print(tabulate(newAsignacion, headers="keys", tablefmt="github"))
+                print()
     
             
                 
