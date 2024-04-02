@@ -26,7 +26,7 @@ def menuAsignacionActivos():
             print(CRUDasignacion.postAsignacion())
             input("Oprima enter para continuar....")
         elif op == "2":
-            print(CRUDzonas.updateZonas())
+            print(CRUDasignacion.findAsignacion())
             input("Oprima enter para continuar....")    
         elif op == "0":
             flag = 0    

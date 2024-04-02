@@ -100,6 +100,43 @@ def postAsignacion():
         
     else:
         return "Numero de item no encontrado"
+    
+def findAsignacion():
+    os.system("cls")
+    while True:
+        try:
+            nroItem = input("Ingrese el Nro Item: ")
+            nroItem = int(nroItem)
+            break
+        except ValueError:
+            print("El dato ingresado no es numero")
+
+    newAsignacion = []
+    for val in gActivos.getAllData():
+        if val.get("NroItem") == nroItem:
+            tipoAsig = val.get("asignaciones")[-1]["TipoAsignacion"]
+            idAsig = val.get("asignaciones")[-1]["AsignadoA"]
+            if tipoAsig == "Zona":
+                for dato in gZonas.getAllData():
+                    if dato.get("id") == idAsig:
+                        asignadoA = dato.get("nombreZona")
+            else:
+                for dato in gPersona.getAllData():
+                    if dato.get("id") == idAsig:
+                        asignadoA = dato.get("Nombre")
+
+            newAsignacion.append({
+                "Nro Asignacion":val.get("asignaciones")[-1]["NroAsignacion"],
+                "Fecha Asignacion":val.get("asignaciones")[-1]["FechaAsignacion"],
+                "Tipo Asignacion":val.get("asignaciones")[-1]["TipoAsignacion"],
+                "Asignado":asignadoA
+            })
+            
+
+
+    print()
+    print(tabulate(newAsignacion, headers="keys", tablefmt="github"))
+    input()     
 
 
     
