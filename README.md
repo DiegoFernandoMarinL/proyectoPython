@@ -41,7 +41,32 @@ Digitar el numero para seleccionar la opcion
             Personal actualizado correctamente
       3. Eliminar
             ......
-      5. Buscar
+      4. Buscar
             se le pedira el Nro item del activo
             aparecera el activo en pantalla
+      0. Regrsar al menu principal   
+2. Menu personal
+El menu consta de 5 opciones
+            1. Agregar
+            2. Editar
+            3. Eliminar
+            4. Buscar
+            0. Regresar al menu principal
+Digitar el numero para seleccionar la opcion
+      1. Agregar
+            
+      2. Editar
+            Esta opcion permite editar un activo de la siguiente forma:
+            Le pedira el numero Nro item del activo 
+            En pantalla se mostrara el activo y se despliaga una lista de los campos que se pueden editar
+            Al seleccionar la opcion del campo se le pedira el nuevo dato segun el campo seleccionado
+            Dato actualizado correctamente
+            Saldra nuavamente la lista de campos por si desea editar otro de lo contrario seleccionar 0. atras
+            Personal actualizado correctamente
+      3. Eliminar
+            ......
+      4. Buscar
+            se le pedira el Nro item del activo
+            aparecera el activo en pantalla
+      0. Regrsar al menu principal        
         
