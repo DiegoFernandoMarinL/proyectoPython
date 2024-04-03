@@ -1,6 +1,5 @@
 from tabulate import tabulate
 import requests
-import os
 import json
 import datetime
 import modules.getActivos as gActivos
@@ -9,22 +8,15 @@ import modules.getPersonal as gPersona
 import modules.getZonas as gZonas
 import modules.getHistorial as gHistorial
 
-def postAsignacion():
-    os.system("cls")
-    while True:
-        try:
-            nroItem = input("Ingrese el Nro Item: ")
-            nroItem = int(nroItem)
-            break
-        except ValueError:
-            print("El dato ingresado no es numero")
-
+def postAsignacion(nroItem):
     newAsignacion = dict()        
     asignaciones = {}
     for val in gActivos.getAllData():
         if val.get("NroItem") == nroItem:
             if val.get("idEstado") == "2":
                 return "No se puede asignar el activo porque esta dado de baja"
+            elif val.get("idEstado") == "3":
+                return "El activo esta en garantia no se puede asignar"
             newAsignacion = val
             historial = val.get("historialActivos")
        
@@ -110,16 +102,7 @@ def postAsignacion():
     else:
         return "Numero de item no encontrado"
     
-def findAsignacion():
-    os.system("cls")
-    while True:
-        try:
-            nroItem = input("Ingrese el Nro Item: ")
-            nroItem = int(nroItem)
-            break
-        except ValueError:
-            print("El dato ingresado no es numero")
-
+def findAsignacion(nroItem):
     newAsignacion = []
     for val in gActivos.getAllData():
         if val.get("NroItem") == nroItem:

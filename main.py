@@ -8,6 +8,53 @@ import modules.updateMovActivos as UmovActivos
 #Servidor
 #json-server storage/activos.json -b 5502
 #-------------------------
+def menuReportes():
+    flag = 1
+    while flag == 1:
+        os.system("cls")
+        print(f"""
+            --- Bienvenido al menu de Movimientos de activos ---
+            
+            1. Listar todos los activos
+            2. Listar activos por categoria
+            3. Listar activos dados de baja por daño
+            4. Listar activos y asignacion
+            5. Listar historial de movimientos activos
+            0. Regresar al menu principal   
+            """)
+        
+        op = input("Seleccione una opcion: ")
+        if op == "1" or op == "2" or op == "3" or op == "4":
+            os.system("cls")
+            while True:
+                try:
+                    nroItem = input("Ingrese el Nro Item: ")
+                    nroItem = int(nroItem)
+                    break
+                except ValueError:
+                    print("El dato ingresado no es numero")
+        
+        if op == "1":
+            print(UmovActivos.retornoActivo(nroItem))
+            input("Oprima enter para continuar....")
+        elif op == "2":
+            print(UmovActivos.bajaActivo(nroItem))
+            input("Oprima enter para continuar....")    
+        elif op == "3":
+            print(UmovActivos.cambiarAsignacionActivo(nroItem))
+            input("Oprima enter para continuar....") 
+        elif op == "4":
+            print(UmovActivos.enviarGarantiaActivo(nroItem))
+            input("Oprima enter para continuar....")  
+        elif op == "5":
+            print(UmovActivos.enviarGarantiaActivo(nroItem))
+            input("Oprima enter para continuar....")
+        elif op == "0":
+            flag = 0    
+        else:
+            print("No es una opcion valida")
+            input("Oprima enter para ingresar nueva opcion....")
+
 def menuMovActivos():
     flag = 1
     while flag == 1:
@@ -23,18 +70,28 @@ def menuMovActivos():
             """)
         
         op = input("Seleccione una opcion: ")
+        if op == "1" or op == "2" or op == "3" or op == "4":
+            os.system("cls")
+            while True:
+                try:
+                    nroItem = input("Ingrese el Nro Item: ")
+                    nroItem = int(nroItem)
+                    break
+                except ValueError:
+                    print("El dato ingresado no es numero")
         
         if op == "1":
-            print(UmovActivos.retornoActivo())
+            print(UmovActivos.retornoActivo(nroItem))
             input("Oprima enter para continuar....")
         elif op == "2":
-            print(UmovActivos.bajaActivo())
+            print(UmovActivos.bajaActivo(nroItem))
             input("Oprima enter para continuar....")    
         elif op == "3":
+            print(UmovActivos.cambiarAsignacionActivo(nroItem))
             input("Oprima enter para continuar....") 
         elif op == "4":
-            CRUDzonas.findZonas()
-            input("Oprima enter para continuar....")     
+            print(UmovActivos.enviarGarantiaActivo(nroItem))
+            input("Oprima enter para continuar....")  
         elif op == "0":
             flag = 0    
         else:
@@ -54,12 +111,21 @@ def menuAsignacionActivos():
             """)
         
         op = input("Seleccione una opcion: ")
-        
+        if op == "1" or op == "2":
+            os.system("cls")
+            while True:
+                try:
+                    nroItem = input("Ingrese el Nro Item: ")
+                    nroItem = int(nroItem)
+                    break
+                except ValueError:
+                    print("El dato ingresado no es numero")
+            
         if op == "1":
-            print(CRUDasignacion.postAsignacion())
+            print(CRUDasignacion.postAsignacion(nroItem))
             input("Oprima enter para continuar....")
         elif op == "2":
-            CRUDasignacion.findAsignacion()
+            CRUDasignacion.findAsignacion(nroItem)
             input("Oprima enter para continuar....")    
         elif op == "0":
             flag = 0    
@@ -198,7 +264,7 @@ if (__name__=="__main__"):
         elif op == "4":  
             menuAsignacionActivos() 
         elif op == "5":    
-            print("falta anexar")
+            menuReportes()
         elif op == "6":   
             menuMovActivos()
         elif op == "0":

@@ -9103,9 +9103,47 @@
             "idTipo": "7",
             "ValorUnitario": "120000",
             "idEstado": "0",
-            "id": "504",
-            "historialActivos": [],
-            "asignaciones": []
+            "id": 504,
+            "historialActivos": [
+                {
+                    "NroId": 1,
+                    "Fecha": "2024-04-02 22:43",
+                    "tipoMov": "1",
+                    "idRespMov": "Campuslands"
+                },
+                {
+                    "NroId": 2,
+                    "Fecha": "2024-04-02 22:43",
+                    "tipoMov": "4",
+                    "idRespMov": "Campuslands"
+                },
+                {
+                    "NroId": 3,
+                    "Fecha": "2024-04-02 22:54",
+                    "tipoMov": "3",
+                    "idRespMov": "Campuslands"
+                },
+                {
+                    "NroId": 4,
+                    "Fecha": "2024-04-02 22:59",
+                    "tipoMov": "4",
+                    "idRespMov": "Campuslands"
+                }
+            ],
+            "asignaciones": [
+                {
+                    "NroAsignacion": 1,
+                    "FechaAsignacion": "2024-04-02 22:43",
+                    "TipoAsignacion": "Zona",
+                    "AsignadoA": "7"
+                },
+                {
+                    "NroAsignacion": 2,
+                    "FechaAsignacion": "2024-04-02 22:43",
+                    "TipoAsignacion": "Zona",
+                    "AsignadoA": "1"
+                }
+            ]
         },
         {
             "NroItem": 556,
@@ -9120,50 +9158,26 @@
             "idCategoria": "2",
             "idTipo": "7",
             "ValorUnitario": "120000",
-            "idEstado": "2",
+            "idEstado": "1",
             "id": 505,
             "historialActivos": [
                 {
-                    "NroId": 1,
-                    "Fecha": "2024-04-02 15:55",
-                    "tipoMov": "1",
-                    "idRespMov": "Campuslands"
-                },
-                {
-                    "NroId": 2,
-                    "Fecha": "2024-04-02 15:56",
-                    "tipoMov": "4",
-                    "idRespMov": "Campuslands"
-                },
-                {
-                    "NroId": 3,
-                    "Fecha": "2024-04-02 15:56",
-                    "tipoMov": "1",
-                    "idRespMov": "Campuslands"
-                },
-                {
-                    "NroId": 4,
-                    "Fecha": "2024-04-02 15:59",
-                    "tipoMov": "4",
-                    "idRespMov": "Campuslands"
-                },
-                {
                     "NroId": 5,
-                    "Fecha": "2024-04-02 15:59",
-                    "tipoMov": "2",
+                    "Fecha": "2024-04-02 22:18",
+                    "tipoMov": "4",
                     "idRespMov": "Campuslands"
                 }
             ],
             "asignaciones": [
                 {
                     "NroAsignacion": 1,
-                    "FechaAsignacion": "2024-04-02 15:55",
-                    "TipoAsignacion": "Persona",
-                    "AsignadoA": "ca5316cf-96c9-4986-81c7-ca9a5f983692"
+                    "FechaAsignacion": "2024-04-02 22:13",
+                    "TipoAsignacion": "Zona",
+                    "AsignadoA": "2"
                 },
                 {
                     "NroAsignacion": 2,
-                    "FechaAsignacion": "2024-04-02 15:56",
+                    "FechaAsignacion": "2024-04-02 22:18",
                     "TipoAsignacion": "Persona",
                     "AsignadoA": "ca5316cf-96c9-4986-81c7-ca9a5f983692"
                 }
