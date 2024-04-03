@@ -4,6 +4,7 @@ import modules.CRUDpersonal as CRUDpersonal
 import modules.CRUDzonas as CRUDzonas
 import modules.CRUDasignacion as CRUDasignacion
 import modules.updateMovActivos as UmovActivos
+import modules.getReportes as gResportes
 
 #Servidor
 #json-server storage/activos.json -b 5502
@@ -24,30 +25,20 @@ def menuReportes():
             """)
         
         op = input("Seleccione una opcion: ")
-        if op == "1" or op == "2" or op == "3" or op == "4":
-            os.system("cls")
-            while True:
-                try:
-                    nroItem = input("Ingrese el Nro Item: ")
-                    nroItem = int(nroItem)
-                    break
-                except ValueError:
-                    print("El dato ingresado no es numero")
-        
+
         if op == "1":
-            print(UmovActivos.retornoActivo(nroItem))
+            gResportes.allActivos()
             input("Oprima enter para continuar....")
         elif op == "2":
-            print(UmovActivos.bajaActivo(nroItem))
+            gResportes.getActivosCategoria()
             input("Oprima enter para continuar....")    
         elif op == "3":
-            print(UmovActivos.cambiarAsignacionActivo(nroItem))
+            gResportes.getActivosBaja()
             input("Oprima enter para continuar....") 
         elif op == "4":
-            print(UmovActivos.enviarGarantiaActivo(nroItem))
             input("Oprima enter para continuar....")  
         elif op == "5":
-            print(UmovActivos.enviarGarantiaActivo(nroItem))
+            gResportes.historialActivos()
             input("Oprima enter para continuar....")
         elif op == "0":
             flag = 0    
